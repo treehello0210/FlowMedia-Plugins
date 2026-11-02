@@ -519,3 +519,25 @@ FlowMedia 将 GitHub Token 按登录用户与仓库分别加密保存。配置�
 这些提示复用 FlowMedia 现有文案，通常不会包含远程响应、插件原始异常或凭据。先缩减到本文最小示例定位，再逐步增加功能；不要把真实 Token 或包含用户数据的运行目录放进问题报告。
 
 项目文档：[FlowMedia Wiki](https://www.flowmedia.wiki/)。插件问题可在本仓库 [Issues](https://github.com/treehello0210/FlowMedia-Plugins/issues) 中说明 FlowMedia 版本、插件 ID/版本、最小复现步骤及不含敏感信息的现象。
+
+## 11. SDK 2：受控网络代理能力
+
+以上 SDK 1 规范继续有效。SDK 2 需要主程序显式支持，不能安装到仅支持 SDK 1 的版本。发布 SDK 2 插件前，必须先部署兼容主程序；旧客户端会拒绝未知 SDK 的市场清单，因此 SDK 2 发布 PR 应在主程序兼容版本就绪后合并。
+
+SDK 2 保持 `schema_version: 1`、Python 3.11、现有目录、打包、表单、事件、Cron、数据、日志及隔离运行约束。只新增以下能力组合：
+
+```json
+{"sdk_version":"2","permissions":["proxy.monitor"],"dependencies":[]}
+```
+
+或需要探测和切换时：
+
+```json
+{"sdk_version":"2","permissions":["proxy.monitor","proxy.control"],"dependencies":[]}
+```
+
+这不是任意网络权限。插件进程仍禁网，主程序依据已保存配置调用固定的 Clash/v2rayA 适配接口，并将有限快照交给插件。密码类型配置不传入 SDK 2 插件进程。插件只通过新增的 `get_service_snapshot()` 获取该快照的深拷贝，返回值包含 `ok`、`provider`、`checked_at` 以及实际可用的状态与数据；不可用字段省略。该方法是 SDK 保留方法，不能作为事件或定时入口。
+
+SDK 2 不放宽 `run()` 返回结果类型、`save_data()` 大小或 `notify()` 文案限制，不支持插件自带前端脚本、第三方依赖或主程序内部导入。监控界面、认证、限流和控制校验由主程序提供。`proxy.control` 只允许已启用插件的显式操作或已配置策略执行；查看监控与连接测试不执行节点切换。
+
+首个插件：[网络代理监控](docs/network_proxy_monitor.md)。公开包仅含插件代码与清单，不包含 FlowMedia 主程序源码。发布者应继续检查 ZIP、描述符、文档与提交清单，禁止上传运行配置、令牌、密码或订阅链接。
