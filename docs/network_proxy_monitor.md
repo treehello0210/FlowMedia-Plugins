@@ -1,4 +1,4 @@
-# 网络代理监控 1.0.0
+# 网络代理监控 1.0.1
 
 插件 ID：`network_proxy_monitor`。要求主程序已经支持 **SDK 2** 的 `proxy.monitor` 和 `proxy.control` 能力；Python 3.11，清单格式 1。SDK 1 主程序不能安装本版本。
 
