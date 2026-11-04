@@ -10,13 +10,13 @@ FlowMedia 官方插件市场。开发者可按本文创建 Python 插件、打�
 
 | 插件 | 最新版本 | 所需 SDK | 功能与说明 |
 | --- | --- | --- | --- |
-| [网络代理监控](docs/network_proxy_monitor.md) | [1.0.0](plugins/network_proxy_monitor/1.0.0/) | 2 | Clash / v2rayA 状态、节点、分组与真实流量；按服务能力提供探测、故障切换和优选。 |
+| [网络代理监控](docs/network_proxy_monitor.md) | [1.0.1](plugins/network_proxy_monitor/1.0.1/) | 2 | Clash / v2rayA 状态、节点、分组与真实流量；按服务能力提供探测、故障切换和优选。 |
 
 安装已发布插件：
 
 1. 确认主程序支持插件所需 SDK，并满足[运行环境要求](#deployment)。
 2. 在“插件管理 → 配置”填写仓库 `treehello0210/FlowMedia-Plugins`、分支 `main`，保存后进入“插件市场”刷新。公开仓库的浏览与安装无需 GitHub Token。
-3. 选择插件并安装。也可[下载网络代理监控 ZIP](https://github.com/treehello0210/FlowMedia-Plugins/raw/refs/heads/main/plugins/network_proxy_monitor/1.0.0/plugin.zip)，通过页面顶部“上传”导入，再从“本地”安装。
+3. 选择插件并安装。也可[下载网络代理监控 ZIP](https://github.com/treehello0210/FlowMedia-Plugins/raw/refs/heads/main/plugins/network_proxy_monitor/1.0.1/plugin.zip)，通过页面顶部“上传”导入，再从“本地”安装。
 4. 安装后默认停用。按插件说明保存配置；支持连接测试的插件先测试，再启用。网络代理监控需填写管理 API 地址，不能使用 HTTP/SOCKS 代理转发端口。
 
 v2rayA 2.2.7.5 的探测可能影响核心运行，因此本插件仅提供监控；流量与控制能力差异详见[插件说明](docs/network_proxy_monitor.md)。界面只展示接口实际提供的数据。
@@ -617,7 +617,7 @@ SDK 2 沿用前文的目录、Python 3.11、清单格式 1、表单 Schema、事
 | `timeout` | 请求超时，整数 1–10 秒，默认 5 秒。 |
 | 策略字段 | `strategy`、`group`、`probe_url`、阈值、间隔、冷却及 `domain_rules` 等，详见[网络代理监控配置说明](docs/network_proxy_monitor.md)。 |
 
-可参考已发布的[完整市场描述符](plugins/network_proxy_monitor/1.0.0/manifest.json)，其中 `manifest` 对象是包内清单的规范化形式。密码、令牌与地址的示例默认值为空，不应填入真实服务信息。监控专用界面由主程序实现，不需要也不允许把前端源码放入插件 ZIP。
+可参考已发布的[完整市场描述符](plugins/network_proxy_monitor/1.0.1/manifest.json)，其中 `manifest` 对象是包内清单的规范化形式。密码、令牌与地址的示例默认值为空，不应填入真实服务信息。监控专用界面由主程序实现，不需要也不允许把前端源码放入插件 ZIP。
 
 ### 11.2 服务快照
 
