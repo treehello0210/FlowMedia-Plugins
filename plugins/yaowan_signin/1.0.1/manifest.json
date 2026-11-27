@@ -1,0 +1,110 @@
+{
+  "manifest": {
+    "schema_version": 1,
+    "id": "yaowan_signin",
+    "name": "药丸论坛签到",
+    "version": "1.0.1",
+    "sdk_version": "2",
+    "python_version": "3.11",
+    "entry": "plugin.py",
+    "class_name": "Plugin",
+    "description": "支持 Cookie 会话刷新、账号密码登录回退、浏览器仿真与实时状态核验的药丸论坛自动签到插件。",
+    "tags": [
+      "论坛签到",
+      "药丸"
+    ],
+    "permissions": [
+      "forum.yaowan"
+    ],
+    "dependencies": [],
+    "config_schema": {
+      "type": "object",
+      "properties": {
+        "cookie": {
+          "type": "string",
+          "title": "Cookie",
+          "format": "password",
+          "default": "",
+          "maxLength": 4096,
+          "description": "需包含 flarum_remember；优先使用 Cookie 自动刷新会话完成签到。"
+        },
+        "username": {
+          "type": "string",
+          "title": "用户名",
+          "default": "",
+          "maxLength": 120,
+          "description": "未配置 Cookie 或 Cookie 失效时使用账号密码登录签到，并自动更新 Cookie。"
+        },
+        "user_password": {
+          "type": "string",
+          "title": "密码",
+          "format": "password",
+          "default": "",
+          "maxLength": 512
+        },
+        "cron": {
+          "type": "string",
+          "title": "自动签到 Cron",
+          "default": "0 0 9 * * * *",
+          "maxLength": 100,
+          "description": "按 Asia/Shanghai 时区执行；留空暂停自动签到。"
+        },
+        "notify": {
+          "type": "boolean",
+          "title": "发送结果通知",
+          "default": false
+        },
+        "use_proxy": {
+          "type": "boolean",
+          "title": "使用网络代理",
+          "default": true,
+          "description": "开启后使用系统「网络代理」配置访问论坛。"
+        },
+        "use_browser_emulation": {
+          "type": "boolean",
+          "title": "启用浏览器仿真",
+          "default": false,
+          "description": "开启后使用内置浏览器环境获取论坛页面，适配站点防护校验。"
+        },
+        "retry_count": {
+          "type": "integer",
+          "title": "失败重试次数",
+          "default": 2,
+          "minimum": 0,
+          "maximum": 10
+        },
+        "retry_interval": {
+          "type": "integer",
+          "title": "失败重试间隔 (分钟)",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 60
+        },
+        "history_days": {
+          "type": "integer",
+          "title": "记录保留天数",
+          "default": 30,
+          "minimum": 1,
+          "maximum": 3650
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "schedules": [],
+    "events": [
+      {
+        "event": "plugin.started",
+        "method": "run"
+      },
+      {
+        "event": "plugin.manual",
+        "method": "run"
+      }
+    ]
+  },
+  "sha256": "6278da8cabdc093f104b24b21125e4bd422a3fe4624581ae2c0d98e561cc470b",
+  "size": 1585,
+  "author": "treehello0210",
+  "package": "plugins/yaowan_signin/1.0.1/plugin.zip"
+}
