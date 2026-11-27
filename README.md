@@ -11,8 +11,8 @@ FlowMedia 官方插件市场。开发者可按本文创建 Python 插件、打�
 | 插件 | 最新版本 | 所需 SDK | 功能与说明 |
 | --- | --- | --- | --- |
 | [网络代理监控](docs/network_proxy_monitor.md) | [1.0.1](plugins/network_proxy_monitor/1.0.1/) | 2 | Clash / v2rayA 状态、节点、分组与真实流量；按服务能力提供探测、故障切换和优选。 |
-| [蜂巢论坛签到](docs/fengchao_signin.md) | [1.0.0](plugins/fengchao_signin/1.0.0/) | 2 | 通过专用 API Key 完成蜂巢论坛自动签到、站点数据同步、论坛通知接收及账号状态与签到日历展示。 |
-| [药丸论坛签到](docs/yaowan_signin.md) | [1.0.0](plugins/yaowan_signin/1.0.0/) | 2 | 支持 Cookie 会话刷新、账号密码登录回退、浏览器仿真与实时状态核验的药丸论坛自动签到插件。 |
+| [蜂巢论坛签到](docs/fengchao_signin.md) | [1.0.1](plugins/fengchao_signin/1.0.1/) | 2 | 通过专用 API Key 完成蜂巢论坛自动签到、站点数据同步、论坛通知接收及账号状态与签到日历展示。 |
+| [药丸论坛签到](docs/yaowan_signin.md) | [1.0.1](plugins/yaowan_signin/1.0.1/) | 2 | 支持 Cookie 会话刷新、账号密码登录回退、浏览器仿真与实时状态核验的药丸论坛自动签到插件。 |
 
 安装已发布插件：
 
@@ -41,7 +41,7 @@ v2rayA 2.2.7.5 的探测可能影响核心运行，因此本插件仅提供监�
 - 手动执行、启用事件、Cron 定时任务。
 - 有限的数值执行结果与系统既有日志消息。
 
-运行器每次执行创建独立容器；插件无法访问网络、主程序数据库、网盘账户、下载器、媒体目录、Docker socket 或 FlowMedia 的内部 Python 模块。`requests`、`httpx` 等第三方包不属于可用依赖，也不会执行 `pip install`。MoviePilot 等其他项目的插件不能直接复制使用。
+运行器每次执行创建独立容器；插件无法访问网络、主程序数据库、网盘账户、下载器、媒体目录、Docker socket 或 FlowMedia 的内部 Python 模块。`requests`、`httpx` 等第三方包不属于可用依赖，也不会执行 `pip install`。所有插件均需遵循本仓库的清单与接口规范，不可直接复制其他项目的插件使用。
 
 | 能力 | SDK 1 | SDK 2 |
 | --- | --- | --- |
